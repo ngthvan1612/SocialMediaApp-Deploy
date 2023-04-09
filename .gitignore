@@ -1,3 +1,4 @@
 SocialMediaBackend/
 server/
-minio-data
+minio-data/
+mysql-data/
