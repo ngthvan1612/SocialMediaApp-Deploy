@@ -6,8 +6,6 @@ services:
       - ./mysql-dump:/docker-entrypoint-initdb.d:rw
       - ./mysql-data:/var/lib/mysql:rw
       - ./wait-for-mysql-started.sh:/wait-for-mysql-started.sh:ro
-    ports:
-      - 9000:9000
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_PASSWORD: 1234
@@ -17,6 +15,8 @@ services:
     command: server /data/minio
     volumes:
       - ./minio-data:/data/minio:rw
+    ports:
+      - 9000:9000
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: abcdef-123456789
