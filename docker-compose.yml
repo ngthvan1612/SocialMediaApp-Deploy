@@ -2,13 +2,10 @@ version: '3.3'
 services:
   db:
     image: mysql:8.0
-    healthcheck:
-      test: mysql --protocol=socket -hlocalhost -uroot -p$$MYSQL_ROOT_PASSWORD -e 'SELECT 1'
-      timeout: 10s
-      retries: 100
     volumes:
-      - ./mysql-dump:/docker-entrypoint-initdb.d
-      - ./mysql-data:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d:rw
+      - ./mysql-data:/var/lib/mysql:rw
+      - ./wait-for-mysql-started.sh:/wait-for-mysql-started.sh:ro
     ports:
       - 9000:9000
     environment:
@@ -16,9 +13,6 @@ services:
   minio:
     image: minio/minio
     command: server /data/minio
-    depends_on:
-      db:
-        condition: service_healthy
     volumes:
       - ./minio-data:/data/minio:rw
     environment:
@@ -46,3 +40,12 @@ services:
     ports:
       - '8082:8080'
 
+  nginx:
+    depends_on:
+      - web
+      - minio
+    image: nginx
+    volumes:
+      - ./nginx-config/:/etc/nginx/:ro
+    ports:
+      - 80:80
