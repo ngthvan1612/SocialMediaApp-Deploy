@@ -49,5 +49,6 @@ services:
     image: nginx
     volumes:
       - ./nginx-config/:/etc/nginx/:ro
+      - ./frontend:/usr/nginx/nhom-02-fe
     ports:
       - 80:80
