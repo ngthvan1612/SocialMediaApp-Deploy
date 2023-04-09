@@ -10,6 +10,8 @@ services:
       - 9000:9000
     environment:
       MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: socialmediaapp
   minio:
     image: minio/minio
     command: server /data/minio
