@@ -3,3 +3,4 @@ server/
 minio-data/
 mysql-data/
 *.zip
+frontend/
