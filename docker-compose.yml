@@ -15,8 +15,6 @@ services:
     command: server /data/minio
     volumes:
       - ./minio-data:/data/minio:rw
-    ports:
-      - 9000:9000
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: abcdef-123456789
@@ -39,9 +37,6 @@ services:
     image: tomcat
     volumes:
       - ./server/SocialMediaBackend.war:/usr/local/tomcat/webapps/SocialMediaBackend.war:ro
-    ports:
-      - '8082:8080'
-
   nginx:
     depends_on:
       - web
