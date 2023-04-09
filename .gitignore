@@ -2,3 +2,4 @@ SocialMediaBackend/
 server/
 minio-data/
 mysql-data/
+*.zip
