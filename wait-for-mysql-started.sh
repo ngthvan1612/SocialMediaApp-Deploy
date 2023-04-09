@@ -1,0 +1,1 @@
+while [ ! `wget -q --spider http://db:3306; echo $?` -eq 0 ]; do echo 'waiting for db started'; sleep 1; done

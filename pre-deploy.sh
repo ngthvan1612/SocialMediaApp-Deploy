@@ -23,13 +23,13 @@ printf "jwt.configuration.audience=https://nhom-02-tkppm:8080\n" >> ./src/main/r
 printf "jwt.configuration.expired=604800000\n" >> ./src/main/resources/jwt.production.properties
 
 printf "aws.minio.end-point=http://minio:9000\n" > ./src/main/resources/storage.production.properties
-printf "aws.minio.access-key=t2cImhFAwJAV9MR6\n" >> ./src/main/resources/storage.production.properties
-printf "aws.minio.secret-key=IBuaxm9F97eHk40Mq28pPPrC0rE5Q7jt\n" >> ./src/main/resources/storage.production.properties
-printf "aws.minio.default-bucket=test-spring-04-store\n" >> ./src/main/resources/storage.production.properties
+printf "aws.minio.access-key=minioadmin\n" >> ./src/main/resources/storage.production.properties
+printf "aws.minio.secret-key=abcdef-123456789\n" >> ./src/main/resources/storage.production.properties
+printf "aws.minio.default-bucket=assets\n" >> ./src/main/resources/storage.production.properties
 printf "aws.minio.default-image-upload=uploads\n" >> ./src/main/resources/storage.production.properties
 printf "aws.minio.default-upload-avatar=avatars\n" >> ./src/main/resources/storage.production.properties
 
-mvn install -DskipTests
+#mvn install -DskipTests
 cd ..
 
 echo "Package"

@@ -1,1 +1,1 @@
-create database testspring04;
+create database socialmediaapp;
