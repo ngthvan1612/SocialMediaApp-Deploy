@@ -16,7 +16,7 @@ services:
     volumes:
       - ./minio-data:/data/minio:rw
     ports:
-      - 9000:9000
+      - "127.0.0.1:9000"
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: abcdef-123456789
@@ -27,8 +27,8 @@ services:
     entrypoint: >
       /bin/sh -c "
       /usr/bin/mc alias set socialmediaapp http://minio:9000 minioadmin abcdef-123456789;
-      /usr/bin/mc mb --ignore-existing socialmediaapp/assets;
-      /usr/bin/mc anonymous set public socialmediaapp/assets;
+      /usr/bin/mc mb --ignore-existing socialmediaapp/socialmediaapp;
+      /usr/bin/mc anonymous set public socialmediaapp/socialmediaapp;
       exit 0
       "
   web:
@@ -37,15 +37,7 @@ services:
       - minio
       - createbuckets
     image: tomcat
+    ports:
+      - "127.0.0.1:8082:8080"
     volumes:
       - ./server/SocialMediaBackend.war:/usr/local/tomcat/webapps/SocialMediaBackend.war:ro
-  nginx:
-    depends_on:
-      - web
-      - minio
-    image: nginx
-    volumes:
-      - ./nginx-config/:/etc/nginx/:ro
-      - ./frontend:/usr/nginx/nhom-02-fe
-    ports:
-      - 80:80
