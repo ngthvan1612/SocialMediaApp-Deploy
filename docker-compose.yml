@@ -32,10 +32,6 @@ services:
       /usr/bin/mc anonymous set public socialmediaapp/socialmediaapp;
       exit 0
       "
-  prepare_war:
-    build: .
-    volumes:
-      - tkpm-volume:/app/deploy
   web:
     depends_on:
       - db
@@ -45,7 +41,5 @@ services:
     ports:
       - "127.0.0.1:8082:8080"
     volumes:
-      - tkpm-volume:/usr/local/tomcat/webapps:rw
+      - ./deploy/be:/usr/local/tomcat/webapps:rw
     entrypoint: ["/usr/local/tomcat/bin/catalina.sh", "run"]
-volumes:
-  tkpm-volume:
