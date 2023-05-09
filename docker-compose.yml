@@ -33,6 +33,7 @@ services:
       exit 0
       "
   web:
+    build: .
     depends_on:
       - db
       - minio
